@@ -11,5 +11,18 @@ pipeline {
 		'''
 			}
 		}
+	stage ('Testing Stage') {
+
+            steps {
+                echo 'testing the application'
+            }
+        }
+
+
+        stage ('Deployment Stage') {
+            steps {
+                echo 'deploying the application'
+            }
+        }
 	}
 }
