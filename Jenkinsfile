@@ -1,28 +1,8 @@
-pipeline {
-	agent any
-	
-	stages {
-		stage ('Compile Stage') {
-		
-			steps {
-				sh '''
-			cd HelloWorld
-			mvn clean install
-		'''
-			}
-		}
-	stage ('Testing Stage') {
-
-            steps {
-                echo 'testing the application'
-            }
-        }
-
-
-        stage ('Deployment Stage') {
-            steps {
-                echo 'deploying the application'
-            }
-        }
-     }
+node {
+    def mvnfile = "HelloWorld/pom.xml"
+   
+    stage ("checkout") {
+      checkout scm
+      sh "mvn -f ${mvnfile} clean install" 
+    }
 }
